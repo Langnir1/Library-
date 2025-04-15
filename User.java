@@ -13,13 +13,41 @@ public class User{
 		this.userName = userName;
 	}
 
+	public String getPIN(){
+		return PIN;
+	}
+
+	public void setPIN(){
+		this.PIN = PIN;
+	}
+
+	public boolean login(String userName, String PIN){
+		return this.userName.equals(userName) && this.PIN.equals(PIN);
+	}
+
+	public boolean login(){
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter a Username: ");
+		String userInput = input.nextLine();
+
+		System.out.println("Enter a PIN: ");
+		String PINInput = input.nextLine();
+
+		return login(userInput, PININPUT);
+	}
+
+	public abstract String getReport();
+
 	public static void main(String[] args){
 		System.out.println("Hello World");
 		String a = "People";
 		System.out.println(a);
-		User.sayHi();
+		//User.sayHi();
+		userName = "John";
+		getUserName();
 	}
-
+/*
 	public static void sayHi(){
 		System.out.println("Say Hi works");
 		String a = "Testing a in sayHi";
@@ -28,6 +56,6 @@ public class User{
 		int p = 100;
 		int sum = f + p;
 		System.out.println(sum);
-	}
+	} */
 }
 
