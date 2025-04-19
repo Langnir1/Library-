@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.Serializable;
 
-public class User{
+public abstract class User implements Serializable{
 	String userName;
 	String PIN;
 	
@@ -17,7 +17,7 @@ public class User{
 		return PIN;
 	}
 
-	public void setPIN(){
+	public void setPIN(String PIN){
 		this.PIN = PIN;
 	}
 
@@ -34,18 +34,18 @@ public class User{
 		System.out.println("Enter a PIN: ");
 		String PINInput = input.nextLine();
 
-		return login(userInput, PININPUT);
+		return login(userInput, PINInput);
 	}
 
 	public abstract String getReport();
 
 	public static void main(String[] args){
 		System.out.println("Hello World");
-		String a = "People";
-		System.out.println(a);
+		//String a = "People";
+		//System.out.println(a);
 		//User.sayHi();
-		userName = "John";
-		getUserName();
+		//userName = "John";
+		//getUserName();
 	}
 /*
 	public static void sayHi(){
