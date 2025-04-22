@@ -9,7 +9,7 @@ public class Customer extends User{
 	}
 
 	public String menu(){
-		Scanner input = new SCanner(System.in);
+		Scanner input = new Scanner(System.in);
 
 		System.out.println("\n-----Customer-----");
 		System.out.println("1) Exit");
@@ -31,14 +31,14 @@ public class Customer extends User{
 				System.out.println("Goodbye");
 				keepGoing = false;
 			}
-			else if(choice.equals("2"){
+			else if(choice.equals("2")){
 				library.viewAllBooks();
 			}
 			else if(choice.equals("3")){
 				viewCheckedOutBooks();
 			}
-			else if(choice.equals("4"){
-				checkOutBook();
+			else if(choice.equals("4")){
+				checkOutBook(library);
 			}
 			else if(choice.equals("5")){
 				returnBook();
@@ -59,7 +59,7 @@ public class Customer extends User{
 			}
 		}
 	}
-	public void checkOutBook(Library libray){
+	public void checkOutBook(Library library){
 		Scanner input = new Scanner(System.in);
 		ArrayList<Book> allBooks = library.getBooks();
 
@@ -92,7 +92,7 @@ public class Customer extends User{
 			return;
 		}
 		Book selected = availableBooks.get(choice - 1);
-		selected.checkOut();
+		selected.isChecked();
 		checkedOutBooks.add(selected);
 
 		System.out.println("You checked out: " + selected.getTitle());
@@ -102,6 +102,31 @@ public class Customer extends User{
 			System.out.println("You have no books to return");
 			return;
 		}
+		
+		Scanner input = new Scanner(System.in);
+		System.out.println("Your checked out books:");
+		for(int i = 0; i < checkedOutBooks.size(); i++){
+			System.out.println((i + 1) + ") " + checkedOutBooks.get(i));
+		}
 
+		System.out.print("Enter book number to return:  ");
+		int choice = input.nextInt();
+		input.nextLine();
+		
+		if(choice < 1){
+			System.out.println("Invalid");
+			return;
+		}
+		if(choice > checkedOutBooks.size()){
+			System.out.println("Invalid");
+			return;
+		}
+
+		Book toReturn = checkedOutBooks.remove(choice - 1);
+		toReturn.returnBook();
+		System.out.println("You returned: " + toReturn.getTitle());
+	}
+	public String getReport(){
+		return "Customer: " + userName + " | Books borrowed: " + checkedOutBooks.size();
 	}
 }

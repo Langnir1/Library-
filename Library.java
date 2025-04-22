@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Library {
 	private ArrayList<Book> books = new ArrayList<>();
-	//private ArrayList<Customer> customers = new ArrayList<>();
+	private ArrayList<Customer> customers = new ArrayList<>();
 	private Admin admin = new Admin();
 	
 	public Library(){
@@ -33,7 +33,7 @@ public class Library {
 	}
 	public void start(){
 		boolean keepGoing = true;
-
+		customers.add(new Customer("Joshua", "1111"));
 		while(keepGoing){
 			String choice = menu();
 
@@ -52,6 +52,25 @@ public class Library {
 			}
 			else if(choice.equals("3")){
 				System.out.println("You have seleced Customer");
+				Scanner input = new Scanner(System.in);
+				System.out.println("Enter username: ");
+				String name = input.nextLine();
+				System.out.println("Enter PIN: ");
+				String PIN = input.nextLine();
+
+				Customer found = null;
+				for(Customer c : customers){
+					if(c.login(name, PIN)){
+						found = c;
+					}
+				}
+
+				if(found != null){
+					found.customerStart(this);
+				}
+				else{
+					System.out.println("Invalid");
+				}
 			}
 			else{
 				System.out.println("Invalid input");
@@ -68,9 +87,9 @@ public class Library {
 
 	public void viewAllCustomers(){
 		System.out.println("[Admin] View all Customers  works!");
-		//for(Customer c : customers){
-		//	System.out.println(c.getReport());
-		//}
+		for(Customer c : customers){
+			System.out.println(c.getReport());
+		}
 	}
 
 	public void viewCheckedOutBooks(){
@@ -80,5 +99,8 @@ public class Library {
 				System.out.println(b);
 			}
 		}
+	}
+	public ArrayList<Book> getBooks(){
+		return books;
 	}
 }
