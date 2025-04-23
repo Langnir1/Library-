@@ -12,10 +12,14 @@ public class Library {
 	private void sample(){
 		books.add(new Book("The Hobbit", "J.R.R Tolkien"));
 		books.add(new Book("Lord of the Rings", "J.R.R Tolkien"));
+		books.add(new Book("Claudius", "Barbara Levick"));
+		books.add(new Book("Gates of Fire", "Steven Pressfield"));
 	}
 	
 	public static void main(String[] args){
 		Library library = new Library();
+		library.customers.add(new Customer("Joshua", "1111"));
+		library.customers.add(new Customer("Jared", "2222"));
 		library.start();
 	}
 
@@ -33,7 +37,6 @@ public class Library {
 	}
 	public void start(){
 		boolean keepGoing = true;
-		customers.add(new Customer("Joshua", "1111"));
 		while(keepGoing){
 			String choice = menu();
 
@@ -79,21 +82,21 @@ public class Library {
 	}
 
 	public void viewAllBooks(){
-		System.out.println("[Admin] View all books");
+		//System.out.println("[Admin] View all books");
 		for(Book b : books){
 			System.out.println(b);
 		}
 	}
 
 	public void viewAllCustomers(){
-		System.out.println("[Admin] View all Customers  works!");
+		//System.out.println("[Admin] View all Customers  works!");
 		for(Customer c : customers){
 			System.out.println(c.getReport());
 		}
 	}
 
 	public void viewCheckedOutBooks(){
-		System.out.println("[Admin] View checked out books works!");
+		//System.out.println("[Admin] View checked out books works!");
 		for(Book b : books){
 			if(b.isCheckedOut()){
 				System.out.println(b);
